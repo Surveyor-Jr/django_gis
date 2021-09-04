@@ -1,0 +1,25 @@
+{% extends "header_footer.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row mb-3">
+    <div class="col-6 col-lg-4 themed-grid-col">
+        <h3>Instructions for use:</h3>
+        <p>Batch geocoding requires a single file in <code>CSV</code> format. Make sure all addresses are in a single column
+             titled: <code>Address</code></p>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                {{ form|crispy }}
+                
+            </div>
+            <button type="submit" class="btn btn-primary">Geocode</button>
+        </form>
+    </div>
+    <div class="col-sm-6 col-lg-8 themed-grid-col">
+        Just testing out here
+        {{ data }}
+    </div>
+</div>
+
+{% endblock content %}

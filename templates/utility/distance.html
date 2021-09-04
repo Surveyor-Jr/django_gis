@@ -1,0 +1,75 @@
+{% extends 'header_footer.html' %}
+{% block content %}
+
+<div class="row mb-3">
+    <div class="col-6 col-lg-4 themed-grid-col">
+        <h3>Using Coordinates:</h3>
+        <p>Enter the Latitude and the Longitude coordinates of the two places to find the geodesic distance between point A and point B</p>        
+        <form method="POST" class="row g-3 needs-validation mb-5" novalidate>
+            {% csrf_token %}
+            <h5>Point A</h5>
+            <div class="col-md-4 position-relative">
+                <label for="validationTooltip01" class="form-label">Latitude</label>
+                <input type="text" name="start_lat" class="form-control" id="validationTooltip01" required>
+                
+            </div>
+            <div class="col-md-4 position-relative">
+                <label for="validationTooltip02" class="form-label">Longitude</label>
+                <input type="text" name="start_lon" class="form-control" id="validationTooltip02" required>
+                
+            </div>
+              <h5>Point B</h5>
+              <div class="col-md-4 position-relative">
+                <label for="validationTooltip01" class="form-label">Latitude</label>
+                <input type="text" name="end_lat" class="form-control" id="validationTooltip01" required>
+                
+            </div>
+            <div class="col-md-4 position-relative">
+                <label for="validationTooltip02" class="form-label">Longitude</label>
+                <input type="text" name="end_lon" class="form-control" id="validationTooltip02" required>
+                
+            </div>
+            <div class="form-check form-switch mb-3">
+              <input class="form-check-input" name="saved" type="checkbox" id="flexSwitchCheckDefault">
+              <label class="form-check-label" for="flexSwitchCheckDefault">Save my data</label>
+          </div> 
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Compute Distance</button>
+            </div>
+          </form>
+
+          <h3>Using Location Names:</h3>
+        <p>Enter the names of the locations to compute geodesic distance</p>
+        <form method="GET">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Start Point</label>
+              <input type="text" name="start_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Zimbabwe">
+              <div id="emailHelp" class="form-text">Add as much detail about the location for higher accuracy.</div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">End Point</label>
+              <input type="text" name="end_name" class="form-control" id="exampleInputPassword1" placeholder="United States of America">
+            </div>
+            <div class="form-check form-switch mb-3">
+              <input class="form-check-input" name="saved" type="checkbox" id="flexSwitchCheckDefault">
+              <label class="form-check-label" for="flexSwitchCheckDefault">Save my data</label>
+          </div> 
+            <button type="submit" class="btn btn-primary">Compute Distance</button>
+        </form>
+
+    </div>
+    <div class="col-sm-6 col-lg-8 themed-grid-col">
+        <div class="alert alert-secondary" role="alert">
+            Enter coordinates in the form and click the <strong>Reverse-Geocode</strong> button get the place name
+          </div>
+        {% if distance %}
+        <p>Distance is: {{ distance }} kilometers</p>
+        {{ map |safe}}
+        {% endif %}
+        <!-- TODO Show the coordinates of the location and also return the elements in a table -->
+    </div>    
+  </div>
+
+
+        
+{% endblock content %}

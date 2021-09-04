@@ -1,0 +1,55 @@
+{% extends 'header_footer.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row mb-3">
+    <div class="col-6 col-lg-4 themed-grid-col">
+        <h3>Instructions for use:</h3>
+        <p>Enter a place-name in the search box below to see the location on the map and to get the coordinates</p>           
+        <form method="POST">
+            {% csrf_token %}            
+            <div class="mb-3">
+                <label for="placeName" class="form-label">Place Name</label>          
+                {{ form|crispy }}
+                <div id="placeHelp" class="form-text">Enter a Place Name or an Address. </div>            
+              </div>  
+              <div class="form-check form-switch mb-3">
+                <input class="form-check-input" name="saved" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Save my data</label>
+            </div>          
+            <button type="submit" class="btn btn-primary">Geocode</button>
+        </form>
+        
+        {% if lat and lon %}
+
+        <hr>
+        <h3>Geocing Results:</h3>
+        <p><small>Results are dependant on Open-Street Map user input.</small></p>
+        <!-- geocoding results -->
+        <p>Address: <samp>{{ last_item }}</samp></p>
+        <p>Latitude: <samp>{{ lat }}</samp></p>
+        <p>Longitude: <samp>{{ lon }}</samp></p>
+        <p>JSON Response: <samp><pre>{{ everything }}</pre></samp></p>
+        <p>
+            <small>All coordinates are in Latitude and Longitude (Lat, Lon) format. You can use our <a
+                    href="#">coordinate conversion</a> tool to get
+                the format you desire
+            </small>
+        </p>
+            
+        {% endif %}
+            
+        
+    </div>
+    <div class="col-sm-6 col-lg-8 themed-grid-col">
+        <div class="alert alert-secondary" role="alert">
+            Enter a name in the Search-box and click the <strong>Geocode</strong> button get the location and coordinates. You can also
+            store the results by toggling the <strong>Save my data</strong> button 
+        </div>
+        {{ m |safe}}
+    </div>
+</div>
+
+
+
+{% endblock content %}

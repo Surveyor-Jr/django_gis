@@ -1,0 +1,16 @@
+{% extends "header_footer.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row mb-3">
+    <div class="col-6 col-lg-4 themed-grid-col">
+        <h3>Instructions for use:</h3>
+        <p>Upload a shapefile to visualize your data on the map display. Shapefile data ends with <code>.geojson</code> format. 
+        Any other format will not be rendered</p>
+    </div>
+    <div class="col-sm-6 col-lg-8 themed-grid-col">
+        {{ map|safe }}
+    </div>
+</div>
+
+{% endblock content %}

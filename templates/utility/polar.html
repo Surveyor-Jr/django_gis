@@ -1,0 +1,92 @@
+{% extends "header_footer.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row container">
+    <div class="row">
+        <div class="col">
+            <h3>Instructions: (Polar Calculation)</h3>
+            <p>Polar Computation - given a pair of coordinates (both <code>X</code> and <code>Y</code>) with <code>Distance</code> and 
+                <code>Direction</code> to another point. Get the coordinates of the next point. 
+            </p>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                    {{ form|crispy }}
+                </div>
+                <div class="form-check form-switch mb-3">
+                    <input class="form-check-input" name="saved" type="checkbox" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Save my data</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Calculate</button>
+            </form>
+        </div>
+        <div class="col">
+            <h3>Computation Results</h3>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text">Y</span>
+                <input class="form-control" type="text" value="{{ y }}" id="y_coordinate" aria-label="readonly input example" readonly>
+                <span class="input-group-text">X</span>
+                <input class="form-control" type="text" value="{{ x }}" id="x_coordinate" aria-label="readonly input example" readonly>
+              </div>
+
+            
+              <div class="border-top my-3"></div>
+              <h6>Continuious polar calculation?</h6>
+              <p>Select any of these to progress with the calculation</p>
+
+              <p><small><span class="badge bg-info text-dark">Sequential</span> Calculates the join in a sequential order. The end point
+            coordinates will become the starting point coordinate of the next calculation</small></p>
+            <p><small><span class="badge bg-info text-dark">Radial</span> Calculates the join in a radial formate. The starting point coordinates
+            will remain fixed while the end point coordinates change on your input</small></p>
+              
+
+              <button type="button" id="sequential" class="btn btn-dark">Sequential</button>
+              <button type="button" id="radial" class="btn btn-success">Radial</button>
+        </div>
+    </div>
+
+
+<script>
+document.getElementById("sequential").addEventListener("click", Sequential);
+document.getElementById("radial").addEventListener("click", Radial);
+
+// Get coordinates
+var station_name = document.getElementById("station_name").value;
+var x = document.getElementById("x").value;
+var y = document.getElementById("y").value;
+
+// Get the distance and direction
+var distance = document.getElementById("distance").value;
+var direction = document.getElementById("direction").value;
+var end_name = document.getElementById("end_name").value;
+
+// Get the Answer 
+var y_coordinate = document.getElementById("y_coordinate");
+var x_coordinate = document.getElementById("x_coordinate");
+
+function Sequential() {
+    // solved
+    //document.getElementById("station_name").value=end_name;
+    document.getElementById("y").value=y_coordinate; // FIXME: Bug here
+    document.getElementById("x").value=x_coordinate; // FIXME: Bug here
+    document.getElementById("distance").value = "";
+    document.getElementById("direction").value = "";    
+    document.getElementById("x_coordinate").value = "";
+    document.getElementById("y_coordinate").value = "";
+}
+
+function Radial() {
+    // solved
+    document.getElementById("distance").value = "";
+    document.getElementById("direction").value = "";
+    document.getElementById("x_coordinate").value = "";
+    document.getElementById("y_coordinate").value = "";
+    
+}
+</script>
+
+
+
+    {% endblock content %}
