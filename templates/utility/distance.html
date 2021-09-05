@@ -10,7 +10,7 @@
             <h5>Point A</h5>
             <div class="col-md-4 position-relative">
                 <label for="validationTooltip01" class="form-label">Latitude</label>
-                <input type="text" name="start_lat" class="form-control" id="validationTooltip01" required>
+                <input type="text" name="start_lat" class="form-control" id="validationTooltip01" required=True>
                 
             </div>
             <div class="col-md-4 position-relative">
@@ -29,6 +29,15 @@
                 <input type="text" name="end_lon" class="form-control" id="validationTooltip02" required>
                 
             </div>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="ellipsoid" required>
+              <option value="WGS-84">Select an Ellipsoid</option>
+              <option value="WGS-84">WGS-84</option>
+              <option value="GRS-80">GRS-80</option>
+              <option value="Airy (1830)">Airy (1830)</option>
+              <option value="Intl 1924">Intl 1924</option>
+              <option value="Clarke (1880)">Clarke 1880</option>
+              <option value="GRS-67">GRS-67</option>
+            </select>
             <div class="form-check form-switch mb-3">
               <input class="form-check-input" name="saved" type="checkbox" id="flexSwitchCheckDefault">
               <label class="form-check-label" for="flexSwitchCheckDefault">Save my data</label>
@@ -50,6 +59,15 @@
               <label for="exampleInputPassword1" class="form-label">End Point</label>
               <input type="text" name="end_name" class="form-control" id="exampleInputPassword1" placeholder="United States of America">
             </div>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="ellipsoid" required>
+              <option value="WGS-84">Select an Ellipsoid</option>
+              <option value="WGS-84">WGS-84</option>
+              <option value="GRS-80">GRS-80</option>
+              <option value="Airy (1830)">Airy (1830)</option>
+              <option value="Intl 1924">Intl 1924</option>
+              <option value="Clarke (1880)">Clarke 1880</option>
+              <option value="GRS-67">GRS-67</option>
+            </select>
             <div class="form-check form-switch mb-3">
               <input class="form-check-input" name="saved" type="checkbox" id="flexSwitchCheckDefault">
               <label class="form-check-label" for="flexSwitchCheckDefault">Save my data</label>
@@ -60,10 +78,11 @@
     </div>
     <div class="col-sm-6 col-lg-8 themed-grid-col">
         <div class="alert alert-secondary" role="alert">
-            Enter coordinates in the form and click the <strong>Reverse-Geocode</strong> button get the place name
+            Enter coordinates or place name in the form and click the <strong>Compute Distance</strong> button to get the result
           </div>
         {% if distance %}
         <p>Distance is: {{ distance }} kilometers</p>
+        <p>Ellipsoid: {{ ellipsoid }}</p>
         {{ map |safe}}
         {% endif %}
         <!-- TODO Show the coordinates of the location and also return the elements in a table -->

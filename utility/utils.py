@@ -187,11 +187,14 @@ def geodesic_from_coords(request):
     start_lon = request.POST.get('start_lon')
     end_lat = request.POST.get('end_lat')
     end_lon = request.POST.get('end_lon')
+    ellipsoid = request.POST.get('ellipsoid')
     try:
         start = (start_lat, start_lon)
         end = (end_lat, end_lon) 
+        # get the ellipsoid
+
         # get the distance
-        distance = distance.distance(start, end).km
+        distance = distance.distance(start, end, ellipsoid=ellipsoid).km
 
         # the map obj
         m = folium.Map(location=[start_lat, start_lon], zoom_start=2)
@@ -211,7 +214,8 @@ def geodesic_from_coords(request):
         context = {
             'distance': distance,
             'map': m,
-                    }
+            'ellipsoid': ellipsoid,
+            }
         return render(request, 'utility/distance.html', context)
 
     except:

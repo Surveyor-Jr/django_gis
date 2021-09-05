@@ -1,0 +1,68 @@
+{% extends 'header_footer.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-8">
+      <h3>Single-Address-Geocoded Results</h3>
+      
+      <table class="table table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Address</th>
+            <th scope="col">Latitude</th>
+            <th scope="col">Longitude</th>
+            <th scope="col">Full-Address</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for g in geocode %}
+          <tr>
+            <th scope="row">{{ g.count }}</th>
+            <td>{{ g.address }}</td>
+            <td>{{ g.lat }}</td>
+            <td>{{ g.lon }}</td>
+            <td>{{ g.full_address }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm">Action</button>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-sm-4">
+        <h4>Map</h4>
+      <div id="mapid" style="width: 500px; height: 400px;"></div>
+<script>
+
+	var mymap = L.map('mapid').setView([51.505, -0.09], 1);
+
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
+	}).addTo(mymap);
+
+	{% for g in geocode %}
+
+    L.marker([{{ g.lat }}, {{ g.lon }}]).addTo(mymap)
+		.bindPopup("{{ g.full_address }}");
+
+    {% endfor %}
+
+
+	var popup = L.popup();
+
+
+</script>
+<hr>
+        {% include "users/profile_side_menu.html" %}
+    </div>
+  </div>
+  
+{% endblock content %}

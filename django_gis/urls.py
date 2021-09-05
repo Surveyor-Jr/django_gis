@@ -23,6 +23,7 @@ urlpatterns = [
     path('geocode/', include('geocoder.urls')),
     path('map/', include('map.urls')),
     path('utility/', include('utility.urls')),
+    path('profile/', include('users.urls')),
     path('', include('info.urls')),
 ]
 

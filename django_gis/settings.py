@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'map.apps.MapConfig',
     'utility.apps.UtilityConfig',
     'info.apps.InfoConfig',
+    'users.apps.UsersConfig',
     # additional installed Django Packages
     'crispy_forms',
     'taggit',
