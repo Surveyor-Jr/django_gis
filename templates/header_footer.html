@@ -107,10 +107,19 @@
                 <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
               </form>
       
+              
+              {% if user.is_authenticated %}
               <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2">Login</button>
-                <button type="button" class="btn btn-warning">Sign-up</button>
+                <span>Logged in as: {{ user.username }} </span>
+                <a href="{% url 'profile-home' %}" type="button" class="btn btn-outline-light me-2">Profile</a>
               </div>
+              {% else %}
+              <div class="text-end">
+                <a href="{% url 'login' %}" type="button" class="btn btn-outline-light me-2">Login</a>
+                <a href="{% url 'register' %}" type="button" class="btn btn-warning">Sign-up</a>
+              </div>                
+              {% endif %}
+                
             </div>
           </div>
         </header>      
