@@ -1,0 +1,29 @@
+{% extends "header_footer.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-8">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form|crispy }}
+              </div>
+              <select class="form-select form-select-sm mb-4" aria-label=".form-select-sm example" name="convert_to" required>
+                  <option value="">-- Convert to --</option>
+                <option value="geojson">GeoJSON</option>
+                <option value="json">JSON</option>
+                <option value="csv">CSV</option>
+              </select>      
+            <button type="submit" class="btn btn-primary">Convert</button>
+          </form>
+
+          Just for Test: <br>
+          Convert to: {{ format }}
+    </div>
+    <div class="col-sm-4">        
+        {% include "utility/conversion_menu.html" %}
+    </div>
+  </div>
+  
+{% endblock content %}

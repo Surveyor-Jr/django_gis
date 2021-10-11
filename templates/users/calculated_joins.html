@@ -1,0 +1,40 @@
+{% extends 'header_footer.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-8">
+      <h3>Stored Join Calculations</h3>
+      
+      <table class="table table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Start Point (y,x)</th>
+            <th scope="col">End Point (y,x)</th>
+            <th scope="col">Distance</th>
+            <th scope="col">Direction</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for j in join %}
+          <tr>
+            <th scope="row">{{ j.count }}</th>
+            <td>({{ j.y_start }} , {{ j.x_start }})</td>
+            <td>({{ j.y_end }} , {{ j.y_start }})</td>
+            <td>{{ j.distance }}</td>
+            <td>{{ j.direction_dd }} <span class="badge rounded-pill bg-dark">or</span> {{ j.direction_deg }}&deg;{{ j.direction_min }}`{{ j.direction_sec }}``</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm">Action</button>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-sm-4">        
+        {% include "users/profile_side_menu.html" %}
+    </div>
+  </div>
+  
+{% endblock content %}

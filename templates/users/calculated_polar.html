@@ -1,0 +1,40 @@
+{% extends 'header_footer.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-8">
+      <h3>Stored Polar Calculations</h3>
+      
+      <table class="table table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Setup Station (y,x)</th>
+            <th scope="col">Distance</th>
+            <th scope="col">Direction</th>
+            <th scope="col">End Point Station(y,x)</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in polar %}
+          <tr>
+            <th scope="row">{{ p.count }}</th>
+            <td>({{ p.y }} , {{ p.x }})</td>
+            <td>{{ p.distance }}</td>
+            <td>{{ p.direction }}</td>
+            <td>{{ p.y_coordinate }} , {{ p.x_coordinate}}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm">Action</button>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-sm-4">        
+        {% include "users/profile_side_menu.html" %}
+    </div>
+  </div>
+  
+{% endblock content %}
