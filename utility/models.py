@@ -1,5 +1,7 @@
 from django.db import models
+from .validators import validate_shapefile
 from pyproj import CRS, Transformer
+
 
 class Join(models.Model):
     start_name = models.CharField(max_length=200, null=True, blank=True)
@@ -70,6 +72,16 @@ class CoordinateTransform(models.Model):
 
     def __str__(self):
         return str(self.stored_on)
+
+class FromShapefile(models.Model):
+    file = models.FileField(upload_to='from_shapefile/%Y/%m/%d/', validators=[validate_shapefile])
+    uploaded_on = models.DateTimeField(auto_now_add=True, editable=False)
+
+    class Meta:
+        verbose_name_plural = 'From-Shapefile-Conversions'
+
+    def __str__(self):
+        return str(self.uploaded_on)
 
 
 

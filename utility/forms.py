@@ -1,6 +1,6 @@
 from django.forms import fields, forms, ModelForm, widgets
 from django import forms
-from .models import Join, Polar, CoordinateTransform
+from .models import Join, Polar, CoordinateTransform, FromShapefile
 
 class JoinForm(ModelForm):
     start_name = forms.CharField(required=False, label='', widget=forms.TextInput(attrs={
@@ -108,3 +108,9 @@ class CoordinateForm(ModelForm):
     class Meta:
         model = CoordinateTransform
         fields = ('from_epsg', 'y', 'x', 'to_epsg')
+
+class FromShapefileForm(ModelForm):
+    file = forms.FileField(required=True, label='Upload Shapefile (.shp)')
+    class Meta:
+        model = FromShapefile
+        fields = ('file',)

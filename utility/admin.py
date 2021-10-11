@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Join, CoordinateTransform, CRS, Polar
+from .models import Join, CoordinateTransform, CRS, Polar, FromShapefile
 
 class JoinAdmin(admin.ModelAdmin):
     list_display = ('y_start', 'x_start', 'y_end', 'x_end', 'distance', 'direction_dd')
@@ -15,3 +15,4 @@ admin.site.register(Join, JoinAdmin)
 admin.site.register(Polar, PolarAdmin)
 admin.site.register(CoordinateTransform, CTAdmin)
 admin.site.register(CRS)
+admin.site.register(FromShapefile)
