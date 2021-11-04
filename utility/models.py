@@ -1,6 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 from .validators import validate_shapefile
 from pyproj import CRS, Transformer
+
 
 
 class Join(models.Model):
@@ -18,6 +20,8 @@ class Join(models.Model):
     direction_sec = models.FloatField(null=True, blank=True)
     # Store the date and time information too
     stored_on = models.DateTimeField(auto_now_add=True)
+    # Save to user account 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'Calculated Joins'
@@ -37,6 +41,8 @@ class Polar(models.Model):
     y_coordinate = models.FloatField(null=True, blank=True)
     # Store the date and time information too
     stored_on = models.DateTimeField(auto_now_add=True)
+    # Save to user account 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'Calculated Polars'
@@ -65,6 +71,8 @@ class CoordinateTransform(models.Model):
     x_trans = models.FloatField(verbose_name='X-Transformed', null=True, blank=True)
     y_trans = models.FloatField(verbose_name='Y-Transformed', null=True, blank=True)
     stored_on = models.DateTimeField(auto_now_add=True)
+    # Save to user account 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'Coordinate Conversions'       
@@ -76,6 +84,8 @@ class CoordinateTransform(models.Model):
 class FromShapefile(models.Model):
     file = models.FileField(upload_to='from_shapefile/%Y/%m/%d/', validators=[validate_shapefile])
     uploaded_on = models.DateTimeField(auto_now_add=True, editable=False)
+    # Save to user account 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'From-Shapefile-Conversions'

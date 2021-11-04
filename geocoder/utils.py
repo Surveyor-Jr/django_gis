@@ -70,6 +70,7 @@ def handle_user_address(request, form):
         instance.full_address = address
         instance.metadata = everything
         instance.html_map = m
+        instance.user = request.user #Saves to the current logged in users
         instance.save()
 
     context = {
@@ -110,7 +111,7 @@ def reverse_geocode_result(request):
     # Saving the data
     save_data = request.POST.get('saved')
     if save_data == 'on':
-        ReverseGeocode.objects.create(lat=lat,lon=lon, latitude=latitude, longitude=longitude, full_address=address, metadata=raw, html_map=m)
+        ReverseGeocode.objects.create(lat=lat, lon=lon, latitude=latitude, longitude=longitude, full_address=address, metadata=raw, html_map=m, user=request.user)
 
     context = {
         'lat': latitude,

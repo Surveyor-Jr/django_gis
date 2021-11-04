@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class SingleAddressGeocode(models.Model):
@@ -9,6 +10,8 @@ class SingleAddressGeocode(models.Model):
     full_address = models.TextField(null=True, blank=True)
     metadata = models.JSONField(null=True, blank=True)
     html_map = models.TextField(null=True, blank=True)
+    # Save to user account 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.address
@@ -26,6 +29,8 @@ class ReverseGeocode(models.Model):
     full_address = models.TextField(null=True, blank=True)
     metadata = models.JSONField(null=True, blank=True)
     html_map = models.TextField(null=True, blank=True)
+    # Save to user account 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.full_address

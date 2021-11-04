@@ -100,6 +100,7 @@ def calculate_join(request, form):
         instance.direction_deg = dms[0]
         instance.direction_min = dms[1]
         instance.direction_sec = dms[2]
+        instance.user = request.user # Save result to user profile
         instance.save()
         messages.success(request, "Join computation complete and data stored successfully")
 
@@ -133,6 +134,7 @@ def calculate_polar(request, form):
         instance = form.save(commit=False)
         instance.x_coordinate = polar[1]
         instance.y_coordinate = polar[0]
+        instance.user = request.user # Save result to user profile
         instance.save()
         messages.success(request, "Coordinates calculated and stored successfully")
 
@@ -166,6 +168,7 @@ def handle_coordinate_transformation(request, form):
         # instance as defined in Model Name
         instance.x_trans = transformed[1]
         instance.y_trans = transformed[0]
+        instance.user = request.user # Save result to user profile
         instance.save()
         # form.save()
         messages.success(request, "Coordinate Transormation data stored")
