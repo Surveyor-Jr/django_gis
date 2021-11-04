@@ -112,11 +112,12 @@
               <div class="text-end">
                 <span>Logged in as: {{ user.username }} </span>
                 <a href="{% url 'profile-home' %}" type="button" class="btn btn-outline-light me-2">Profile</a>
+                <a href="{% url 'logout' %}?next={{request.path}}" type="button" class="btn btn-danger me-2">Logout</a>
               </div>
               {% else %}
               <div class="text-end">
-                <a href="{% url 'login' %}" type="button" class="btn btn-outline-light me-2">Login</a>
-                <a href="{% url 'register' %}" type="button" class="btn btn-warning">Sign-up</a>
+                <a href="{% url 'login' %}?next={{request.path}}" type="button" class="btn btn-outline-light me-2">Login</a>
+                <a href="{% url 'register' %}?next={{request.path}}" type="button" class="btn btn-warning">Sign-up</a>
               </div>                
               {% endif %}
                 
