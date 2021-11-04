@@ -17,8 +17,12 @@
                 </div>
 
                 <div class="form-check form-switch mb-3">
+                    {% if user.is_authenticated %}
                     <input class="form-check-input" name="saved" type="checkbox" id="flexSwitchCheckDefault">
                     <label class="form-check-label" for="flexSwitchCheckDefault">Save my data</label>
+                    {% else %}
+                    <span class="badge rounded-pill bg-warning text-dark">Only logged in users can save results</span>
+                    {% endif %}
                 </div>
 
                 <button type="submit" class="btn btn-primary">Convert</button>
