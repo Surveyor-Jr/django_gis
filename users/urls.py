@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import GeocodeList, JoinList, PolarList
+from .views import GeocodeList, JoinList, PolarList, CoordinateTransformList
 from users import views as user_views
 
 urlpatterns = [   
@@ -8,4 +8,5 @@ urlpatterns = [
     path('single-address-geocodes/', GeocodeList.as_view(), name='single-address-geocode-list'),
     path('join-results/', JoinList.as_view(), name='calculated-joins'),
     path('polar-results/', PolarList.as_view(), name='calculated-polars'),
+    path('transformed-coordinates/', CoordinateTransformList.as_view(), name='transformed-coordinates'),
 ]

@@ -1,0 +1,44 @@
+{% extends 'header_footer.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-8">
+      <h3>Transformed Coordinates</h3>
+      
+      <table class="table table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">EPSG (from)</th>
+            <th scope="col">Latitude</th>
+            <th scope="col">Longitude</th>
+            <th scope="col">EPSG (to)</th>
+            <th scope="col">Latitude</th>
+            <th scope="col">Longitude</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in coord_transform %}
+          <tr>
+            <th scope="row">{{ c.count }}</th>
+            <td>{{ c.from_epsg }}</td>
+            <td>{{ c.y }}</td>
+            <td>{{ c.x }}</td>
+            <td>{{ c.to_epsg }}</td>
+            <td>{{ c.y_trans }}</td>
+            <td>{{ c.x_trans }}</td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm">Action</button>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-sm-4">        
+        {% include "users/profile_side_menu.html" %}
+    </div>
+  </div>
+  
+{% endblock content %}

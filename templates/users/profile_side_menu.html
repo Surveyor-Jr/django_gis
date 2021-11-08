@@ -9,8 +9,9 @@
 <hr class="bg-danger border-2 border-top border-primary mb-3 mt-3">
 <h3>Data Menu</h3>
 <div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action">Geocodes</a>
-    <a href="#" class="list-group-item list-group-item-action">Polars</a>
-    <a href="#" class="list-group-item list-group-item-action">Joins</a>
-    <a href="#" class="list-group-item list-group-item-action">Coordinate Transforms</a>
+    <a href="{% url 'single-address-geocode-list' %}" class="list-group-item list-group-item-action">Geocodes</a>
+    <a href="{% url 'calculated-joins' %}" class="list-group-item list-group-item-action">Joins</a>
+    <a href="{% url 'calculated-polars' %}" class="list-group-item list-group-item-action">Polars</a>
+    <a href="{% url 'transformed-coordinates' %}" class="list-group-item list-group-item-action">Coordinate Transforms</a>
+    <a href="#" class="list-group-item list-group-item-action">Files</a>
 </div>
