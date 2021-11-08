@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+import django_heroku
 
 from decouple import config
 from pathlib import Path
@@ -165,3 +166,6 @@ CRIPSY_TEMPLATE_PACK = 'uni_form'
 TAGGIT_CASE_INSENSITIVE = True
 
 LOGIN_REDIRECT = 'profile-home'
+
+# HEROKU Configuration
+django_heroku.settings(locals())
