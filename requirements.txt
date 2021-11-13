@@ -74,7 +74,7 @@ pandocfilters==1.4.3
 parso==0.8.2
 pickleshare==0.7.5
 Pillow==8.3.1
-pywin32==227;platform_system == "Windows"
+pywin32==223;platform_system == "Windows"
 prometheus-client==0.11.0
 prompt-toolkit==3.0.20
 psycopg2==2.9.1
