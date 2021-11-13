@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import ShapefileForm
 from .models import SpatialData, FileType
 import folium
-import geopandas as gpd
+# import geopandas as gpd
 
 
 def map_shapefile(request): # FIXME: Ability to choose file of choice to upload
