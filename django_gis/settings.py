@@ -20,7 +20,7 @@ from decouple import config
 # ESRI GIS Library
 # from arcgis.gis import GIS
 
-# Login to GIS 
+# Login to GIS
 # gis  = GIS("https://arcgis.com", username=config('GIS_USERNAME'), password=config('GIS_PASSWORD'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
