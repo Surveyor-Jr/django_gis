@@ -100,15 +100,15 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql',
 
-        'NAME': config('DB_NAME'),
+        'NAME': 'django_gis',
 
-        'USER': config('DB_USERNAME'),
+        'USER': 'postgres',
 
-        'PASSWORD': config('DB_PASSWORD'),
+        'PASSWORD': 'nkm10636',
 
-        'HOST': config('DB_HOST'),
+        'HOST': 'localhost',
 
-        'PORT': config('DB_PORT'),
+        'PORT': '5432',
 
     }
 
