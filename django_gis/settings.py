@@ -10,13 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+from pathlib import Path
 import django_heroku
 
 from decouple import config
-from pathlib import Path
 
 
-# ESRI GIS Library 
+
+# ESRI GIS Library
 # from arcgis.gis import GIS
 
 # Login to GIS 
