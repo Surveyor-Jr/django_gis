@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'utility.apps.UtilityConfig',
     'info.apps.InfoConfig',
     'users.apps.UsersConfig',
+    'chatbot.apps.ChatbotConfig',
     # additional installed Django Packages
     'crispy_forms',
     'taggit',
