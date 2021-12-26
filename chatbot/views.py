@@ -18,6 +18,6 @@ def api_request(request):
         # sorting result in asscending order by keys:
     sorted_string = JSONEncoder().encode({"data": [{"message":"Hi there I was built with python"}]})
     # sorted_string = json.dumps(x)
-    return render(request, 'chatbot/api_endpoint.json', context={
+    return render(request, 'chatbot/api_endpoint.html', context={
             'result': sorted_string
         })
