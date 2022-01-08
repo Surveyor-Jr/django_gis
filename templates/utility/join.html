@@ -2,77 +2,113 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="row container">
-    <div class="row">
-        <div class="col">
-            <h3>Instructions: (Join Calculation)</h3>
-            <p>Join Computation - given two coordinate pairs, find the distance and direction (bearing) between the two points
-                each coordinate pair contains an <code>X</code> and <code>Y</code> value to be computed. 
-            </p>
-            <p>Select the Hemisphere (South or North) for the computation. </p>
-            <form method="POST">
-                {% csrf_token %}
-                <div class="form-floating mb-3">
-                    {{ form|crispy }}
-                </div>
-                <div class="form-check form-switch mb-3">
-                    {% if user.is_authenticated %}
-                    <input class="form-check-input" name="saved" type="checkbox" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Save my data</label>
-                    {% else %}
-                    <span class="badge rounded-pill bg-warning text-dark">Only logged in users can save results</span>
-                    {% endif %}
-                </div>
-                <button type="submit" class="btn btn-primary">Calculate</button>
-            </form>
-        </div>
-        <div class="col">
-            <h3>Computation Results</h3>
+<main id="main" class="main">
 
-            <div class="mb-3 row">
-                <label for="distance" class="col-sm-2 col-form-label">Distance (m)</label>
-                <div class="col-md-6">
-                    <input class="form-control" type="text" value="{{ distance }}" aria-label="readonly input example" readonly>
-                </div>
+    <div class="pagetitle">
+        <h1>Cards</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Components</li>
+                <li class="breadcrumb-item active">Cards</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row align-items-top">
+            <div class="col-lg-6">
+
+                <!-- Input Card -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Instructions for use</h5>
+                        <!-- the magic happens here -->
+                        <p>Join Computation - given two coordinate pairs, find the distance and direction (bearing) between the two points
+                            each coordinate pair contains an <code>X</code> and <code>Y</code> value to be computed. 
+                        </p>
+                        <p>Select the Hemisphere (South or North) for the computation. </p>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-floating mb-3">
+                                {{ form|crispy }}
+                            </div>
+                            <div class="form-check form-switch mb-3">
+                                {% if user.is_authenticated %}
+                                <input class="form-check-input" name="saved" type="checkbox" id="flexSwitchCheckDefault">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Save my data</label>
+                                {% else %}
+                                <span class="badge rounded-pill bg-warning text-dark">Only logged in users can save results</span>
+                                {% endif %}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Calculate</button>
+                        </form>
+                        </div>
+                </div><!-- End Result Card -->
+
+
             </div>
 
-            <div class="mb-3 row">
-                <label for="direction" class="col-sm-2 col-form-label">Direction (&deg;)</label>
-                <div class="col-md-6">
-                    <input class="form-control" type="text" value="{{ direction }}" aria-label="readonly input example" readonly>
-                </div>
-            </div>
+            <div class="col-lg-6">
 
-            <div class="row g-3">
-            <div class="col-md-2">
-                <label for="degrees" class="form-label">Degrees(&deg;)</label>
-                <input class="form-control" type="text" value="{{ degree }}" aria-label="readonly input example" readonly>
-              </div>
-              <div class="col-md-2">
-                <label for="minutes" class="form-label">Minutes(`)</label>
-                <input class="form-control" type="text" value="{{ minutes }}" aria-label="readonly input example" readonly>
-              </div>
-              <div class="col-md-2">
-                <label for="inputZip" class="form-label">Seconds(``)</label>
-                <input class="form-control" type="text" value="{{ seconds }}" aria-label="readonly input example" readonly>
-              </div>
-              </div>
+                <!-- Result Card -->
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Result</h5>
+                        <!-- the other magic here -->
+                        <div class="mb-3 row">
+                            <label for="distance" class="col-sm-2 col-form-label">Distance (m)</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="{{ distance }}" aria-label="readonly input example" readonly>
+                            </div>
+                        </div>
             
-              <div class="border-top my-3"></div>
-              <h6>Continuing join calculation?</h6>
-              <p>Select any of these to progress with the calculation</p>
+                        <div class="mb-3 row">
+                            <label for="direction" class="col-sm-2 col-form-label">Direction (&deg;)</label>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" value="{{ direction }}" aria-label="readonly input example" readonly>
+                            </div>
+                        </div>
+            
+                        <div class="row g-3">
+                        <div class="col-md-2">
+                            <label for="degrees" class="form-label">Degrees(&deg;)</label>
+                            <input class="form-control" type="text" value="{{ degree }}" aria-label="readonly input example" readonly>
+                          </div>
+                          <div class="col-md-2">
+                            <label for="minutes" class="form-label">Minutes(`)</label>
+                            <input class="form-control" type="text" value="{{ minutes }}" aria-label="readonly input example" readonly>
+                          </div>
+                          <div class="col-md-2">
+                            <label for="inputZip" class="form-label">Seconds(``)</label>
+                            <input class="form-control" type="text" value="{{ seconds }}" aria-label="readonly input example" readonly>
+                          </div>
+                          </div>
+                        
+                          <div class="border-top my-3"></div>
+                          <h6>Continuing join calculation?</h6>
+                          <p>Select any of these to progress with the calculation</p>
+            
+                          <p><small><span class="badge bg-info text-dark">Sequential</span> Calculates the join in a sequential order. The end point
+                        coordinates will become the starting point coordinate of the next calculation</small></p>
+                        <p><small><span class="badge bg-info text-dark">Radial</span> Calculates the join in a radial formate. The starting point coordinates
+                        will remain fixed while the end point coordinates change on your input</small></p>
+                          
+            
+                          <button type="button" id="sequential" class="btn btn-dark">Sequential</button>
+                          <button type="button" id="radial" class="btn btn-success">Radial</button>
+                    </div>
+                </div><!-- End  Result Card -->
 
-              <p><small><span class="badge bg-info text-dark">Sequential</span> Calculates the join in a sequential order. The end point
-            coordinates will become the starting point coordinate of the next calculation</small></p>
-            <p><small><span class="badge bg-info text-dark">Radial</span> Calculates the join in a radial formate. The starting point coordinates
-            will remain fixed while the end point coordinates change on your input</small></p>
-              
 
-              <button type="button" id="sequential" class="btn btn-dark">Sequential</button>
-              <button type="button" id="radial" class="btn btn-success">Radial</button>
+            </div>
+
+
+
         </div>
-    </div>
+    </section>
 
+</main><!-- End #main -->
 
 <script>
     // FIXME: place the javascript event handlers properly to prevent these fucken bugs
@@ -108,6 +144,4 @@ function Radial() {
 }
 </script>
 
-
-
-    {% endblock content %}
+{% endblock content %}

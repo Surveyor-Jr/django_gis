@@ -16,7 +16,10 @@ def geocode(request):
                 return handle_user_address(request, form)
                 
             except:
-                return HttpResponseNotFound('Invalid Input data. Try again.')
+                context = {
+                    'error_message': 'The parameters entered do not match any address on the planet.'
+                }
+                return render(request, 'error.html', context)
 
     else:
         form = SingleGeocodeForm()

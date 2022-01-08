@@ -27,7 +27,6 @@ urlpatterns = [
     path('map/', include('map.urls')),
     path('utility/', include('utility.urls')),
     path('accounts/profile/', include('users.urls')),
-    path('api/', include('chatbot.urls')),
     path('', include('info.urls')),
     # Auth Views
     path('register/', user_views.register, name='register'),

@@ -1,102 +1,143 @@
 {% extends 'header_footer.html' %}
 {% block content %}
 
-<div class="row mb-3">
-    <div class="col-6 col-lg-4 themed-grid-col">
-        <h3>Using Coordinates:</h3>
-        <p>Enter the Latitude and the Longitude coordinates of the two places to find the geodesic distance between point A and point B</p>        
-        <form method="POST" class="row g-3 needs-validation mb-5" novalidate>
-            {% csrf_token %}
-            <h5>Point A</h5>
-            <div class="col-md-4 position-relative">
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Cards</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item">Components</li>
+        <li class="breadcrumb-item active">Cards</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+
+  <section class="section">
+    <div class="row align-items-top">
+      <div class="col-lg-6">
+
+        <!-- Input Card -->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Using Coordinates</h5>
+            <p>Enter the Latitude and the Longitude coordinates of the two places to find the geodesic distance between
+              point A and point B</p>
+            <form method="POST" class="row g-3 needs-validation mb-5" novalidate>
+              {% csrf_token %}
+              <h5>Point A</h5>
+              <div class="col-md-4 position-relative">
                 <label for="validationTooltip01" class="form-label">Latitude</label>
                 <input type="text" name="start_lat" class="form-control" id="validationTooltip01" required=True>
-                
-            </div>
-            <div class="col-md-4 position-relative">
+
+              </div>
+              <div class="col-md-4 position-relative">
                 <label for="validationTooltip02" class="form-label">Longitude</label>
                 <input type="text" name="start_lon" class="form-control" id="validationTooltip02" required>
-                
-            </div>
+
+              </div>
               <h5>Point B</h5>
               <div class="col-md-4 position-relative">
                 <label for="validationTooltip01" class="form-label">Latitude</label>
                 <input type="text" name="end_lat" class="form-control" id="validationTooltip01" required>
-                
-            </div>
-            <div class="col-md-4 position-relative">
+
+              </div>
+              <div class="col-md-4 position-relative">
                 <label for="validationTooltip02" class="form-label">Longitude</label>
                 <input type="text" name="end_lon" class="form-control" id="validationTooltip02" required>
-                
-            </div>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="ellipsoid" required>
-              <option value="WGS-84">Select an Ellipsoid</option>
-              <option value="WGS-84">WGS-84</option>
-              <option value="GRS-80">GRS-80</option>
-              <option value="Airy (1830)">Airy (1830)</option>
-              <option value="Intl 1924">Intl 1924</option>
-              <option value="Clarke (1880)">Clarke 1880</option>
-              <option value="GRS-67">GRS-67</option>
-            </select>
-            <div class="form-check form-switch mb-3">
-              {% if user.is_authenticated %}
-              <input class="form-check-input" name="saved" type="checkbox" id="flexSwitchCheckDefault">
-              <label class="form-check-label" for="flexSwitchCheckDefault">Save my data</label>
-              {% else %}
-                <span class="badge rounded-pill bg-warning text-dark">Only logged in users can save results</span>
-              {% endif %}
-          </div> 
-            <div class="col-12">
-                <button class="btn btn-primary" type="submit">Compute Distance</button>
-            </div>
-          </form>
 
-          <h3>Using Location Names:</h3>
-        <p>Enter the names of the locations to compute geodesic distance</p>
-        <form method="GET">
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Start Point</label>
-              <input type="text" name="start_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Zimbabwe">
-              <div id="emailHelp" class="form-text">Add as much detail about the location for higher accuracy.</div>
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">End Point</label>
-              <input type="text" name="end_name" class="form-control" id="exampleInputPassword1" placeholder="United States of America">
-            </div>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="ellipsoid" required>
-              <option value="WGS-84">Select an Ellipsoid</option>
-              <option value="WGS-84">WGS-84</option>
-              <option value="GRS-80">GRS-80</option>
-              <option value="Airy (1830)">Airy (1830)</option>
-              <option value="Intl 1924">Intl 1924</option>
-              <option value="Clarke (1880)">Clarke 1880</option>
-              <option value="GRS-67">GRS-67</option>
-            </select>
-            <div class="form-check form-switch mb-3">
-              {% if user.is_authenticated %}
-              <input class="form-check-input" name="saved" type="checkbox" id="flexSwitchCheckDefault">
-              <label class="form-check-label" for="flexSwitchCheckDefault">Save my data</label>
-              {% else %}
+              </div>
+              <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="ellipsoid" required>
+                <option value="WGS-84">Select an Ellipsoid</option>
+                <option value="WGS-84">WGS-84</option>
+                <option value="GRS-80">GRS-80</option>
+                <option value="Airy (1830)">Airy (1830)</option>
+                <option value="Intl 1924">Intl 1924</option>
+                <option value="Clarke (1880)">Clarke 1880</option>
+                <option value="GRS-67">GRS-67</option>
+              </select>
+              <div class="form-check form-switch mb-3">
+                {% if user.is_authenticated %}
+                <input class="form-check-input" name="saved" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Save my data</label>
+                {% else %}
                 <span class="badge rounded-pill bg-warning text-dark">Only logged in users can save results</span>
-              {% endif %}
-          </div> 
-            <button type="submit" class="btn btn-primary">Compute Distance</button>
-        </form>
+                {% endif %}
+              </div>
+              <div class="col-12">
+                <button class="btn btn-primary" type="submit">Compute Distance</button>
+              </div>
+            </form>
+
+            <h5 class="card-title">Using Location Names</h5>
+            <p>Enter the names of the locations to compute geodesic distance</p>
+            <form method="GET">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Start Point</label>
+                <input type="text" name="start_name" class="form-control" id="exampleInputEmail1"
+                  aria-describedby="emailHelp" placeholder="Zimbabwe">
+                <div id="emailHelp" class="form-text">Add as much detail about the location for higher accuracy.</div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">End Point</label>
+                <input type="text" name="end_name" class="form-control" id="exampleInputPassword1"
+                  placeholder="United States of America">
+              </div>
+              <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="ellipsoid" required>
+                <option value="WGS-84">Select an Ellipsoid</option>
+                <option value="WGS-84">WGS-84</option>
+                <option value="GRS-80">GRS-80</option>
+                <option value="Airy (1830)">Airy (1830)</option>
+                <option value="Intl 1924">Intl 1924</option>
+                <option value="Clarke (1880)">Clarke 1880</option>
+                <option value="GRS-67">GRS-67</option>
+              </select>
+              <div class="form-check form-switch mb-3">
+                {% if user.is_authenticated %}
+                <input class="form-check-input" name="saved" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Save my data</label>
+                {% else %}
+                <span class="badge rounded-pill bg-warning text-dark">Only logged in users can save results</span>
+                {% endif %}
+              </div>
+              <button type="submit" class="btn btn-primary">Compute Distance</button>
+            </form>
+          </div>
+        </div><!-- End Result Card -->
+
+
+      </div>
+
+      <div class="col-lg-6">
+
+        <!-- Result Card -->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Result</h5>
+            <!-- the other magic here -->
+            <div class="alert alert-secondary" role="alert">
+              Enter coordinates or place name in the form and click the <strong>Compute Distance</strong> button to get
+              the result
+            </div>
+            {% if distance %}
+            <p>Distance is: {{ distance }} kilometers</p>
+            <p>Ellipsoid: {{ ellipsoid }}</p>
+            {{ map |safe}}
+            {% endif %}
+            <!-- TODO Show the coordinates of the location and also return the elements in a table -->
+          </div>
+        </div><!-- End  Result Card -->
+
+
+      </div>
+
+
 
     </div>
-    <div class="col-sm-6 col-lg-8 themed-grid-col">
-        <div class="alert alert-secondary" role="alert">
-            Enter coordinates or place name in the form and click the <strong>Compute Distance</strong> button to get the result
-          </div>
-        {% if distance %}
-        <p>Distance is: {{ distance }} kilometers</p>
-        <p>Ellipsoid: {{ ellipsoid }}</p>
-        {{ map |safe}}
-        {% endif %}
-        <!-- TODO Show the coordinates of the location and also return the elements in a table -->
-    </div>    
-  </div>
+  </section>
+
+</main><!-- End #main -->
 
 
-        
 {% endblock content %}
