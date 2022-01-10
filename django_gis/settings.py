@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     # additional installed Django Packages
     'crispy_forms',
     'taggit',
-    'rest_framework',
+    # 'rest_framework', removed the restframework for now
     # 'django.contrib.gis', FIXME: Enviornments need to be straight here
 ]
 
